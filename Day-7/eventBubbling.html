@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling</title>
+    <style>
+        .child{
+            background-color: red;
+            border: 2px solid black;
+            padding: 14px;
+            margin: 14px;
+        }
+        .childContainer{
+            background-color: yellow;
+            border: 2px solid black;
+            padding: 14px;
+            margin: 14px;
+        }
+        .container{
+            background-color: green;
+            border: 2px solid black;
+            padding: 14px;
+            margin: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="childContainer">
+            <div class="child">
+                Click Me !!!!!
+            </div>
+        </section>
+    </div>
+    <script>
+        document.querySelector(".child").addEventListener("click" , (e)=>{
+            e.stopPropagation();
+            alert("Child clicked")
+        })
+
+        document.querySelector(".childContainer").addEventListener("click" , (e)=>{
+            e.stopPropagation();
+            alert("Child Container clicked")
+        })
+
+        document.querySelector(".container").addEventListener("click" , ()=>{
+            alert("Container clicked")
+        })
+
+        setInterval(()=>{
+            document.querySelector(".child").style.backgroundColor = "rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})"
+        },1000)
+        // set interval is used to change the color of the child div every 1 second
+        // set timeour is used to change the color of the child div after 1 second only 1 time.
+    </script>
+</body>
+</html>
